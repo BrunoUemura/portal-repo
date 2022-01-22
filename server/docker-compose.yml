@@ -1,0 +1,77 @@
+version: "3.8"
+
+services:
+  rabbitmq:
+    build:
+      context: ./rabbitmq
+      dockerfile: ./Dockerfile
+    container_name: portal-rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    volumes:
+      - "./data/.rabbitmq_data:/var/lib/rabbitmq/mnesia"
+
+  auth-database:
+    image: postgres:latest
+    container_name: auth-database
+    environment:
+      POSTGRES_PASSWORD: admin
+      POSTGRES_USER: admin
+      POSTGRES_DB: portal_auth
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./data/pgdata_auth:/var/lib/postgresql/data
+
+  expenses-database:
+    image: postgres:latest
+    container_name: expenses-database
+    environment:
+      POSTGRES_PASSWORD: admin
+      POSTGRES_USER: admin
+      POSTGRES_DB: portal_expense
+    ports:
+      - "15432:5432"
+    volumes:
+      - ./data/pgdata_expense:/var/lib/postgresql/data
+
+  watchlist-database:
+    image: postgres:latest
+    container_name: watchlist-database
+    environment:
+      POSTGRES_PASSWORD: admin
+      POSTGRES_USER: admin
+      POSTGRES_DB: portal_watchlist
+    ports:
+      - "25432:5432"
+    volumes:
+      - ./data/pgdata_watchlist:/var/lib/postgresql/data
+
+  ms-gateway:
+    build:
+      context: ./ms-api-gateway
+      dockerfile: ./Dockerfile
+    container_name: ms-gateway
+    ports:
+      - "80:80"
+
+  ms-auth:
+    build:
+      context: ./ms-auth
+      dockerfile: ./Dockerfile
+    container_name: ms-auth
+    depends_on:
+      - auth-database
+    ports:
+      - "5000:5000"
+
+  ms-expenses:
+    build:
+      context: ./ms-expenses
+      dockerfile: ./Dockerfile
+    container_name: ms-expenses
+    depends_on:
+      - expenses-database
+    ports:
+      - "5001:5001"

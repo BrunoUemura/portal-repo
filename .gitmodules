@@ -7,3 +7,6 @@
 [submodule "server/portal-auth-api"]
 	path = server/portal-auth-api
 	url = https://github.com/BrunoUemura/portal-auth-api
+[submodule "server/portal-expenses-api"]
+	path = server/portal-expenses-api
+	url = https://github.com/BrunoUemura/portal-expenses-api
