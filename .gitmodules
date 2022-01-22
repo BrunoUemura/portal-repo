@@ -1,0 +1,6 @@
+[submodule "server/watchlist-api"]
+	path = server/watchlist-api
+	url = https://github.com/BrunoUemura/watchlist-api
+[submodule "server/portal-watchlist-api"]
+	path = server/portal-watchlist-api
+	url = https://github.com/BrunoUemura/portal-watchlist-api
