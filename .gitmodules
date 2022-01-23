@@ -10,3 +10,6 @@
 [submodule "server/portal-expenses-api"]
 	path = server/portal-expenses-api
 	url = https://github.com/BrunoUemura/portal-expenses-api
+[submodule "client/portal-frontend-app"]
+	path = client/portal-frontend-app
+	url = https://github.com/BrunoUemura/portal-frontend-app
