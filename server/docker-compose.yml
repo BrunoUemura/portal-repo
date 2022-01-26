@@ -50,28 +50,38 @@ services:
 
   ms-gateway:
     build:
-      context: ./ms-api-gateway
+      context: ./portal-gateway-api
       dockerfile: ./Dockerfile
-    container_name: ms-gateway
+    container_name: portal-gateway-api
     ports:
       - "80:80"
 
-  ms-auth:
+  portal-auth-api:
     build:
-      context: ./ms-auth
+      context: ./portal-auth-api
       dockerfile: ./Dockerfile
-    container_name: ms-auth
+    container_name: portal-auth-api
     depends_on:
       - auth-database
     ports:
       - "5000:5000"
 
-  ms-expenses:
+  # ms-expenses:
+  #   build:
+  #     context: ./ms-expenses
+  #     dockerfile: ./Dockerfile
+  #   container_name: ms-expenses
+  #   depends_on:
+  #     - expenses-database
+  #   ports:
+  #     - "5001:5001"
+
+  portal-watchlist-api:
     build:
-      context: ./ms-expenses
+      context: ./portal-watchlist-api
       dockerfile: ./Dockerfile
-    container_name: ms-expenses
+    container_name: portal-watchlist-api
     depends_on:
-      - expenses-database
+      - watchlist-database
     ports:
-      - "5001:5001"
+      - "5002:5002"

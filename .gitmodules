@@ -13,3 +13,6 @@
 [submodule "client/portal-frontend-app"]
 	path = client/portal-frontend-app
 	url = https://github.com/BrunoUemura/portal-frontend-app
+[submodule "server/portal-gateway-api"]
+	path = server/portal-gateway-api
+	url = https://github.com/BrunoUemura/portal-gateway-api
